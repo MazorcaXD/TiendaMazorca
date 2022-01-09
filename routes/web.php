@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
-use App\Mail\Emailcontact;
+use App\Http\Controllers\ContactoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +22,5 @@ Route::resource('/productos', ProductoController::class);
 Route::resource('/clientes', ClienteController::class);
 Route::resource('/pedidos', PedidoController::class);
 Route::get('/pdf',[ClienteController::class, 'clientesPdf'])->name('clientes_pdf');
-Route::get('/email', function() { return new EmailContact();});
+Route::get('/email',[ContactoController::class, 'index'])->name('contacto.index');
+Route::post('/email',[ContactoController::class, 'store'])->name('contacto.store');
